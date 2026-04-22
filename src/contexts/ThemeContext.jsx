@@ -1,3 +1,8 @@
+// ──────────────────────────────────────────
+// TEMA
+// ──────────────────────────────────────────
+// Persiste la preferencia en localStorage (clave "ng-theme").
+// Aplica/quita la clase "light" en <html>; el modo por defecto es oscuro.
 import { createContext, useContext, useEffect, useState } from "react";
 
 const ThemeContext = createContext({ dark: true, toggle: () => {} });
@@ -12,8 +17,8 @@ export function ThemeProvider({ children }) {
     }
   });
 
+  // Aplica/quita la clase "light" en el elemento raíz y persiste la preferencia.
   useEffect(() => {
-    const root = document.documentElement;
     if (dark) {
       root.classList.remove("light");
     } else {

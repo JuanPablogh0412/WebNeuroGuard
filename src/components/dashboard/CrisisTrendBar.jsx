@@ -7,6 +7,10 @@ import Card from "../ui/Card.jsx";
 import { computeWeeklyCounts } from "../../lib/analytics.js";
 import { useTheme } from "../../contexts/ThemeContext.jsx";
 
+/**
+ * Barras de crisis por semana (últimas 4 semanas).
+ * Azul = total, rojo = prolongadas (> 120 s).
+ */
 export default function CrisisTrendBar({ events }) {
   const { dark } = useTheme();
   const data = useMemo(() => computeWeeklyCounts(events, 4), [events]);

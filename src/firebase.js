@@ -1,3 +1,8 @@
+// ──────────────────────────────────────────
+// FIREBASE
+// ──────────────────────────────────────────
+// Inicialización con variables de entorno Vite (VITE_*).
+// Exporta auth, db y googleProvider como singletons usados en toda la app.
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";

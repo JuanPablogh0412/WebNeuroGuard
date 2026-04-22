@@ -3,7 +3,7 @@ import { useAuth } from "../contexts/AuthContext.jsx";
 import logo from "../assets/logo.png";
 import ThemeToggle from "../components/ui/ThemeToggle.jsx";
 
-/* ─── tiny reusable pieces ─── */
+/* ─── Componentes internos de la página de inicio ─── */
 function NavBar() {
   const { user } = useAuth();
   return (
@@ -86,7 +86,7 @@ function StatItem({ value, label }) {
   );
 }
 
-/* ─── Main HomePage ─── */
+/* ─── Página de inicio ─── */
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-brand-900 text-white">

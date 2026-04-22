@@ -1,3 +1,7 @@
+// ──────────────────────────────────────────
+// FORMATEADORES
+// ──────────────────────────────────────────
+// Funciones de presentación para valores numéricos, duraciones y severidad.
 import { formatDistanceToNow, parseISO } from "date-fns";
 import { es } from "date-fns/locale";
 
@@ -29,6 +33,7 @@ export function formatG(v) {
   return v.toFixed(1);
 }
 
+// Mapeo de severidad a clases Tailwind; usado en LastEventDetail y badges de crisis.
 const SEVERITY_MAP = {
   low:    { label: "Baja",   bg: "bg-warning-light", text: "text-warning",  ring: "ring-warning" },
   medium: { label: "Media",  bg: "bg-amber-100",     text: "text-amber-700", ring: "ring-amber-400" },

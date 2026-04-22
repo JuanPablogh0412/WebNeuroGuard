@@ -1,6 +1,10 @@
+// ──────────────────────────────────────────
+// PERFIL DE USUARIO
+// ──────────────────────────────────────────
 import { doc, setDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "../firebase.js";
 
+// Mapeo estático dispositivo → paciente. Ampliar cuando se registren nuevos dispositivos.
 const DEVICE_TO_PATIENT = {
   esp32_001: "paciente_001",
 };

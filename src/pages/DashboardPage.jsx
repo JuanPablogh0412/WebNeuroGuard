@@ -19,9 +19,15 @@ import HrSpo2PhaseChart from "../components/dashboard/HrSpo2PhaseChart.jsx";
 import CrisisTrendBar from "../components/dashboard/CrisisTrendBar.jsx";
 import CrisisDistributionPie from "../components/dashboard/CrisisDistributionPie.jsx";
 
+// ──────────────────────────────────────────
+// CONSTANTES
+// ──────────────────────────────────────────
 const DEVICE_ID = "esp32_001";
 
 export default function DashboardPage() {
+  // ──────────────────────────────────────────
+  // DATOS (Firestore + telemetría)
+  // ──────────────────────────────────────────
   const { patientId } = useAuth();
   const profile   = usePatientProfile(patientId);
   const telemetry = useLatestTelemetry(patientId, DEVICE_ID);
@@ -29,12 +35,19 @@ export default function DashboardPage() {
   const events       = useEvents(patientId, 100);
   const device       = useDeviceStatus(DEVICE_ID);
 
-  // Separar eventos reales (no suprimidos) de los descartados por actividad
+  // ──────────────────────────────────────────
+  // DATOS DERIVADOS
+  // ──────────────────────────────────────────
+  // Separa eventos reales de los descartados por actividad del paciente (suppressed: true).
   const realEvents     = events.filter((e) => !e.suppressed);
   const suppressed     = events.filter((e) => e.suppressed);
   const lastEvent      = realEvents.length > 0 ? realEvents[0] : null;
 
+  // ──────────────────────────────────────────
+  // ESTADO LOCAL
+  // ──────────────────────────────────────────
   const [selectedEventId, setSelectedEventId] = useState(null);
+  // Si el usuario no seleccionó ninguno, muestra el último evento por defecto.
   const activeEventId = selectedEventId ?? lastEvent?.id ?? null;
   const [showSuppressed, setShowSuppressed] = useState(false);
 

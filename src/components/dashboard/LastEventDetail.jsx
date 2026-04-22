@@ -12,6 +12,7 @@ export default function LastEventDetail({ event, basalHr }) {
   }
 
   const sev = severityStyle(event.severity);
+  // Extrae subobjetos del evento para no repetir acceso profundo en el JSX.
   const motor = event.motor || {};
   const phys  = event.physiological || {};
 

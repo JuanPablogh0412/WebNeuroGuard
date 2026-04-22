@@ -5,6 +5,7 @@ import {
 import Card from "../ui/Card.jsx";
 import { useTheme } from "../../contexts/ThemeContext.jsx";
 
+// Configuración de los cuatro canales graficados en tiempo real.
 const CHARTS = [
   { key: "hr",       label: "Frecuencia Cardíaca", unit: "bpm", stroke: "#EF4444", fill: "#FEE2E2", domain: [40, 180] },
   { key: "spo2",     label: "SpO₂",                unit: "%",   stroke: "#3B82F6", fill: "#DBEAFE", domain: [70, 100] },
@@ -16,6 +17,7 @@ export default function RealtimeCharts({ history }) {
   const { dark } = useTheme();
   if (!history.length) return null;
 
+  // Colores adaptados al tema activo para ejes, grilla y tooltips.
   const gridStroke    = dark ? "rgba(255,255,255,0.05)" : "rgba(0,0,0,0.08)";
   const tickFill      = dark ? "#93C5FD" : "#64748B";
   const axisStroke    = dark ? "rgba(255,255,255,0.08)" : "rgba(0,0,0,0.12)";

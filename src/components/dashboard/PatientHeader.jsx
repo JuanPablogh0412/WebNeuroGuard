@@ -1,6 +1,11 @@
 import Badge from "../ui/Badge.jsx";
 
+/**
+ * Encabezado del dashboard con nombre del paciente, tipo de epilepsia
+ * y estado de conexión del dispositivo.
+ */
 export default function PatientHeader({ profile, device }) {
+  // true si el backend reportó el dispositivo como 'online'.
   const online = device?.status === "online";
 
   return (

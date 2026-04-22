@@ -1,5 +1,6 @@
 import Card from "../ui/Card.jsx";
 
+// Rutas SVG para los iconos de cada signo vital.
 const ICONS = {
   hr:   "M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z",
   spo2: "M12 2c0 0-7 8.5-7 12a7 7 0 0014 0c0-3.5-7-12-7-12z",
@@ -16,6 +17,7 @@ export default function VitalsRealtime({ telemetry }) {
   const gyroMag  = telemetry.imu?.gyro_mag;
   const finger   = telemetry.max30102?.finger;
 
+  // Umbrales de alerta: HR > 120 bpm, SpO₂ < 90%, Acc > 2g, Gyro > 150°/s.
   const items = [
     {
       label: "Frecuencia Cardíaca",

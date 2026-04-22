@@ -2,6 +2,10 @@ import { useEffect, useState } from "react";
 import { collection, query, orderBy, limit as fbLimit, onSnapshot } from "firebase/firestore";
 import { db } from "../firebase.js";
 
+/**
+ * Suscripción en tiempo real a los últimos `maxEvents` eventos del paciente,
+ * ordenados por timestamp descendente. Devuelve el array actualizado en cada cambio.
+ */
 export function useEvents(patientId, maxEvents = 50) {
   const [events, setEvents] = useState([]);
 
@@ -12,6 +16,7 @@ export function useEvents(patientId, maxEvents = 50) {
       orderBy("timestamp", "desc"),
       fbLimit(maxEvents)
     );
+    // onSnapshot devuelve la función de desuscripción; React la llama al desmontar.
     return onSnapshot(q, (snap) => {
       setEvents(snap.docs.map((d) => ({ id: d.id, ...d.data() })));
     });

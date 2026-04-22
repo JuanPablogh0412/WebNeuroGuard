@@ -6,6 +6,9 @@ import { useAuth } from "../contexts/AuthContext.jsx";
 import logo from "../assets/logo.png";
 
 export default function LoginPage() {
+  // ──────────────────────────────────────────
+  // ESTADO
+  // ──────────────────────────────────────────
   const { user, patientId, loading: authLoading, loginWithGoogle } = useAuth();
   const navigate = useNavigate();
   const [email, setEmail]       = useState("");
@@ -15,6 +18,9 @@ export default function LoginPage() {
 
   if (!authLoading && user && patientId) return <Navigate to="/dashboard" replace />;
 
+  // ──────────────────────────────────────────
+  // MANEJADORES
+  // ──────────────────────────────────────────
   async function handleSubmit(e) {
     e.preventDefault();
     setError("");
@@ -23,6 +29,7 @@ export default function LoginPage() {
       await signInWithEmailAndPassword(auth, email, password);
       navigate("/dashboard", { replace: true });
     } catch (err) {
+      // Mensajes legibles para los códigos de error de Firebase Auth.
       const map = {
         "auth/invalid-credential":  "Credenciales inválidas",
         "auth/user-not-found":      "Usuario no encontrado",

@@ -15,6 +15,7 @@ const PHASE_COLORS = {
 
 export default function EventPhaseChart({ readings }) {
   const { dark } = useTheme();
+  // Convierte lecturas crudas a puntos con tiempo relativo en segundos desde t0.
   const data = useMemo(() => {
     if (!readings?.length) return [];
     const t0 = new Date(readings[0].timestamp).getTime();
@@ -26,6 +27,7 @@ export default function EventPhaseChart({ readings }) {
     }));
   }, [readings]);
 
+  // Detecta cambios de fase para generar regiones de color en el gráfico.
   const regions = useMemo(() => {
     if (!data.length) return [];
     const out = [];

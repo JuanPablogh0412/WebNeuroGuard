@@ -6,11 +6,19 @@ import { auth, db, googleProvider } from "../firebase.js";
 const AuthContext = createContext(null);
 
 export function AuthProvider({ children }) {
+  // ──────────────────────────────────────────
+  // ESTADO
+  // ──────────────────────────────────────────
   const [user, setUser]               = useState(null);
   const [patientId, setPatientId]     = useState(null);
   const [displayName, setDisplayName] = useState(null);
   const [loading, setLoading]         = useState(true);
 
+  // ──────────────────────────────────────────
+  // LISTENER DE SESIÓN
+  // ──────────────────────────────────────────
+  // onAuthStateChanged se dispara al montar y cada vez que cambia la sesión.
+  // Al detectar usuario activo, carga su perfil desde Firestore (users/{uid}).
   useEffect(() => {
     const unsub = onAuthStateChanged(auth, async (firebaseUser) => {
       if (firebaseUser) {
@@ -33,10 +41,14 @@ export function AuthProvider({ children }) {
     return unsub;
   }, []);
 
+  // ──────────────────────────────────────────
+  // ACCIONES
+  // ──────────────────────────────────────────
   const logout = () => signOut(auth);
 
   const loginWithGoogle = () => signInWithPopup(auth, googleProvider);
 
+  // Recarga patient_id y display_name tras completar el setup del dispositivo.
   const refreshProfile = async () => {
     if (!auth.currentUser) return;
     const snap = await getDoc(doc(db, "users", auth.currentUser.uid));

@@ -6,6 +6,10 @@ import { useTheme } from "../../contexts/ThemeContext.jsx";
 
 const COLORS = ["#6366F1", "#FBBF24"];
 
+/**
+ * Torta de distribución nocturna vs diurna.
+ * Usa el campo `is_nocturnal` de cada evento.
+ */
 export default function CrisisDistributionPie({ events }) {
   const { dark } = useTheme();
   const dist = useMemo(() => nightDayDistribution(events), [events]);

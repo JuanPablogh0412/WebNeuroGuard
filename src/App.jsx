@@ -1,3 +1,8 @@
+// ──────────────────────────────────────────
+// RUTAS
+// ──────────────────────────────────────────
+// /dashboard está protegida: requiere sesión activa + patient_id vinculado.
+// Cualquier ruta desconocida redirige a /.
 import { Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthContext.jsx";
 import { ThemeProvider } from "./contexts/ThemeContext.jsx";

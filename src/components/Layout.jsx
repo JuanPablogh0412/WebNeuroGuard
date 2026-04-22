@@ -2,6 +2,7 @@ import { useAuth } from "../contexts/AuthContext.jsx";
 import logo from "../assets/logo.png";
 import ThemeToggle from "./ui/ThemeToggle.jsx";
 
+// Estructura principal del dashboard: cabecera fija con logo, email y botón de cierre de sesión.
 export default function Layout({ children }) {
   const { user, logout } = useAuth();
 

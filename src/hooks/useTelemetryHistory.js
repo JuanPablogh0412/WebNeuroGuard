@@ -1,3 +1,6 @@
+// ──────────────────────────────────────────
+// HISTORIAL DE TELEMETRÍA
+// ──────────────────────────────────────────
 import { useEffect, useRef, useState } from "react";
 
 const MAX_POINTS = 120; // ~2 min a 1 lectura/s

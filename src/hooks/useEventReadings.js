@@ -2,6 +2,10 @@ import { useEffect, useState } from "react";
 import { collection, query, where, orderBy, onSnapshot } from "firebase/firestore";
 import { db } from "../firebase.js";
 
+/**
+ * Lecturas de telemetría asociadas a un evento específico (filtradas por crisis_id),
+ * ordenadas ascendentemente para graficar la evolución temporal de la crisis.
+ */
 export function useEventReadings(patientId, deviceId, crisisId) {
   const [readings, setReadings] = useState([]);
 

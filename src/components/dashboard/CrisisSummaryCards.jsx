@@ -7,6 +7,7 @@ export default function CrisisSummaryCards({ events }) {
   const week  = countCrises(events, 7);
   const month = countCrises(events, 30);
 
+  // Configuración de las tres tarjetas: última crisis, semana y mes.
   const cols = [
     {
       label: "Última Crisis",

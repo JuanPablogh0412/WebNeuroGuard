@@ -1,3 +1,8 @@
+// ──────────────────────────────────────────
+// ANÍLITICA DE EVENTOS
+// ──────────────────────────────────────────
+// Funciones puras que calculan estadísticas sobre el array de eventos.
+// Todas reciben el array ya filtrado (solo eventos no suprimidos).
 import { parseISO, startOfWeek, subWeeks, isAfter, isBefore, addWeeks } from "date-fns";
 import { es } from "date-fns/locale";
 

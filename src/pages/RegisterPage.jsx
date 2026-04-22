@@ -10,6 +10,9 @@ export default function RegisterPage() {
   const { user, patientId, loading: authLoading, loginWithGoogle } = useAuth();
   const navigate = useNavigate();
 
+  // ──────────────────────────────────────────
+  // ESTADO
+  // ──────────────────────────────────────────
   const [name, setName]               = useState("");
   const [email, setEmail]             = useState("");
   const [password, setPassword]       = useState("");
@@ -20,6 +23,9 @@ export default function RegisterPage() {
 
   if (!authLoading && user && patientId) return <Navigate to="/dashboard" replace />;
 
+  // ──────────────────────────────────────────
+  // MANEJADORES
+  // ──────────────────────────────────────────
   async function handleSubmit(e) {
     e.preventDefault();
     setError("");
@@ -30,6 +36,7 @@ export default function RegisterPage() {
 
     setLoading(true);
     try {
+      // Flujo: crear usuario en Auth → actualizar displayName → crear documento en Firestore.
       const cred = await createUserWithEmailAndPassword(auth, email, password);
       await updateProfile(cred.user, { displayName: name });
       await createUserProfile(cred.user.uid, {
@@ -38,6 +45,7 @@ export default function RegisterPage() {
       });
       navigate("/dashboard", { replace: true });
     } catch (err) {
+      // Códigos de error de Firebase Auth mapeados a mensajes en español.
       const map = {
         "auth/email-already-in-use": "Este correo ya está registrado",
         "auth/invalid-email":        "Email inválido",

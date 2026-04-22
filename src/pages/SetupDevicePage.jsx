@@ -14,6 +14,7 @@ export default function SetupDevicePage() {
   const [saving, setSaving]     = useState(false);
 
   if (loading) return <Spinner />;
+  // Guardas: sin sesión activa → /login; patient_id ya vinculado → /dashboard.
   if (!user) return <Navigate to="/login" replace />;
   if (patientId) return <Navigate to="/dashboard" replace />;
 
